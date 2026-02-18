@@ -3,7 +3,7 @@ import pickle
 from sklearn.linear_model import LinearRegression
 
 # Load dataset
-df = pd.read_csv("./data/student_data.csv")
+df = pd.read_csv("../data/student_data.csv")
 
 X = df[["Hours"]]
 y = df["Marks"]
@@ -17,3 +17,9 @@ with open("../models/model.pkl", "wb") as f:
     pickle.dump(model, f)
 
 print("Model trained and saved successfully!")
+
+print("Slope:", model.coef_)
+print("Intercept:", model.intercept_)
+
+
+
