@@ -18,7 +18,7 @@ y = df["Marks"]
 
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.5, random_state=101
+    X, y, test_size=0.2, random_state=101
 )
 
 # Train model
@@ -32,9 +32,18 @@ model.fit(X_train, y_train)
 # Predictions
 predictions = model.predict(X_test)
 
-X_range = np.linspace(X["Hours"].min(), X["Hours"].max(), 100)
-X_range = X_range.reshape(-1, 1)
+# Assume you already have:
+# X = array of hours studied (like [2.5, 3.1, 5.0, ...])
+# y = array of marks          (like [55, 62, 78, ...])
+# model = some trained model (LinearRegression, etc.)
 
+# Step 1: Create 100 smooth points between min and max hours
+X_range = np.linspace( X["Hours"].min(), X["Hours"].max(), 100 )
+
+# Step 2: Very important: sklearn expects 2D input → shape (n_samples, 1)
+X_range = X_range.reshape(-1, 1)          # now shape is (100, 1)
+
+# Step 3: Ask model to predict marks for these 100 smooth hours
 y_range = model.predict(X_range)
 
 # Evaluation
