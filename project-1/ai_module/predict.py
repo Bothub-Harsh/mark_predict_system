@@ -12,11 +12,11 @@ with open(model_path, "rb") as f:
 st.title("📊 Student Marks Predictor")
 st.write("Enter study hours to predict marks")
 
-enter = st.text_input("Enter Hours Studied")
+enter = st.number_input("Enter Hours Studied", min_value=0.0)
 
-if st.button("predict"):
-    prediction = load_model.predict([[enter]])
-    st.success(f"prediction marks: {prediction}")
+if st.button("Predict"):
+    prediction = model.predict(np.array([[hours]]))
+    st.success(f"Prediction Marks: {prediction[0]:.2f}")
 
 # # Load model
 # with open("../models/model.pkl","rb") as f:
