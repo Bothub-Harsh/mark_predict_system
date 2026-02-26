@@ -9,8 +9,8 @@ X = df[["Hours"]]
 y = df["Marks"]
 
 #train
-model = train_model(X, y, degree=3, alpha=1)
-# model, best_params, best_score = tune_model(X, y)
+# model = train_model(X, y, degree=3, alpha=1)
+model, best_params, best_score = tune_model(X, y)
 
 os.makedirs("../models",exist_ok=True)
 
